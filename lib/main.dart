@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  int position = 1;
+  int position = 2;
 
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -42,7 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0.0,
         backgroundColor: Colors.white,
         title: new Text(
-          "Mulai Langganan",
+          widget.position==1?
+          "Mulai Langganan":widget.position==2?"Pengantaran":"Pembayaran",
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
