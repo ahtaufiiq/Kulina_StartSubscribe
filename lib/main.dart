@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kulina/organisms_stepper_custom.dart';
 import 'package:kulina/pageOne.dart';
 import 'package:kulina/pageThree.dart';
 import 'package:kulina/pageTwo.dart';
+import 'package:kulina/stepper_custom.dart';
 
 void main() => runApp(new MyApp());
 
@@ -39,20 +39,27 @@ class _MyHomePageState extends State<MyHomePage> {
     _buildStep(context, steps, widget.position);
     return new Scaffold(
       appBar: new AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white,
         title: new Text(
           "Mulai Langganan",
-          style: TextStyle(color: Colors.white),
         ),
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            setState(() {
+              if (widget.position > 1) {
+                widget.position = widget.position - 1;
+              }
+            });
+          },
         ),
       ),
       body: CustomStepper(
-          steps: steps,
-          type: StepperType.horizontal,
-          currentStep: widget.position - 1,
-        ),
+        steps: steps,
+        type: StepperType.horizontal,
+        currentStep: widget.position - 1,
+      ),
     );
   }
 
@@ -61,12 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
     var listContent = [
       PageOne(voidCallback: () {
         setState(() {
-          widget.position = widget.position+1;
+          widget.position = widget.position + 1;
         });
       }),
       PageTwo(voidCallback: () {
         setState(() {
-          widget.position = widget.position+1;
+          widget.position = widget.position + 1;
         });
       }),
       PageThree()
