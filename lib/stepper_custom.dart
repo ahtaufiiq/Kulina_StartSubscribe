@@ -226,7 +226,7 @@ class _StepperState extends State<CustomStepper> with TickerProviderStateMixin {
     return new TextStyle(
         fontFamily: 'Avenir-Black',
         color: widget.steps[index].isActive ? Colors.orange : Colors.grey,
-        fontSize: 11.0);
+        fontSize: 10.0);
   }
 
   TextStyle _subtitleStyle(int index) {
@@ -285,7 +285,7 @@ class _StepperState extends State<CustomStepper> with TickerProviderStateMixin {
         children.add(
           new Expanded(
             child: new Container(
-              margin: const EdgeInsets.only(top: 34.0),
+              margin: const EdgeInsets.only(top: 36.0),
               height: 1.0,
               color: Colors.grey.shade400,
             ),
@@ -298,7 +298,8 @@ class _StepperState extends State<CustomStepper> with TickerProviderStateMixin {
       children: <Widget>[
         new Material(
           child: new Container(
-            margin: const EdgeInsets.symmetric(horizontal: 24.0),
+            color: Colors.white,
+            padding: const EdgeInsets.only(left: 24.0,right: 24.0,bottom: 12.0),
             child: new Row(
               children: widget.isVisible ? children : <Widget>[],
             ),
