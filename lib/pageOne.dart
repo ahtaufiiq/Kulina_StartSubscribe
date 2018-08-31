@@ -66,8 +66,10 @@ class PageOneState extends State<PageOne> {
                       Calendar(
                         isExpandable: true,
                       ),
-                      Padding(padding: const EdgeInsets.only(top:4.0),),
-                      widget.pilihSendiri > 40 && widget.position==4
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                      ),
+                      widget.pilihSendiri > 40 && widget.position == 4
                           ? Text(
                               "Maksimal waktu berlangganan 40 hari",
                               style: TextStyle(
@@ -318,11 +320,9 @@ class PageOneState extends State<PageOne> {
                                     text: "Ok",
                                     warna: Colors.red,
                                     onPressed: () {
-                                      if (int.parse(number.text.toString()) >
-                                          widget.pilihSendiri) {
-                                        widget.pilihSendiri =
-                                            int.parse(number.text.toString());
-                                      }
+                                      widget.pilihSendiri =
+                                          int.parse(number.text.toString());
+
                                       int lama = widget.pilihSendiri;
                                       int position = 0;
                                       int harga = 0;
