@@ -7,6 +7,7 @@ class CalendarTile extends StatelessWidget {
   final String dayOfWeek;
   final bool isDayOfWeek;
   final bool isSelected;
+  final bool libur;
   final TextStyle dayOfWeekStyles;
   final TextStyle dateStyles;
   final Widget child;
@@ -15,6 +16,7 @@ class CalendarTile extends StatelessWidget {
     this.onDateSelected,
     this.date,
     this.child,
+    this.libur,
     this.dateStyles,
     this.dayOfWeek,
     this.dayOfWeekStyles,
@@ -34,20 +36,30 @@ class CalendarTile extends StatelessWidget {
         ),
       );
     } else {
-      return new InkWell(
-        onTap: onDateSelected,
-        child: new Container(
-          decoration: isSelected
-              ? new BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: Theme.of(context).primaryColor,
-                )
-              : new BoxDecoration(),
-          alignment: Alignment.center,
-          child: new Text(
-            Utils.formatDay(date).toString(),
-            style: isSelected ? new TextStyle(color: Colors.white) : dateStyles,
-            textAlign: TextAlign.center,
+      return Container(
+        color: Colors.grey[200],
+        child: new InkWell(
+          onTap: onDateSelected,
+          child: new Container(
+            decoration: isSelected
+                ? new BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Theme.of(context).primaryColor,
+                  )
+                : new BoxDecoration(),
+            alignment: Alignment.center,
+            child: new Text(
+              Utils.formatDay(date).toString(),
+              style: new TextStyle(
+                  color: date.month < DateTime.now().month ||
+                          date.weekday == 6 ||
+                          date.weekday == 7
+                      ? Colors.grey[400]
+                      : date.day < DateTime.now().day
+                          ? Colors.grey[400]
+                          : isSelected ? Colors.white : Colors.black),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       );

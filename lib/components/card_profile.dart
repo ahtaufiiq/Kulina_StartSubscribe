@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kulina/components/button_dialog.dart';
-import 'package:kulina/components/button_gradient.dart';
-import 'package:kulina/components/text.dart';
-import 'package:kulina/components/text_field.dart';
+import 'package:kulina/components/atoms/button_dialog.dart';
+import 'package:kulina/components/atoms/button_gradient.dart';
+import 'package:kulina/components/atoms/text.dart';
+import 'package:kulina/components/atoms/text_field.dart';
 
 class CardProfile extends StatefulWidget {
   DateTime _fromDate = new DateTime.now();

@@ -9,6 +9,9 @@ class CustomText extends StatelessWidget {
   CustomText.medium({this.text})
       : fontSize=14.0,font=FontWeight.normal;
 
+  CustomText.title_medium({this.text})
+      : fontSize=12.0;
+
   CustomText.title({this.text})
       : fontSize=16.0;
 

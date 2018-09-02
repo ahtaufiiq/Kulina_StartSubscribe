@@ -9,7 +9,7 @@ class TextFieldPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Container(
       child: new TextFormField(
-        autofocus: true,
+        autofocus: false,
         obscureText: true,
         controller: controller,
         decoration: new InputDecoration(
@@ -29,11 +29,16 @@ class TextFieldEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
+      decoration: new BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(width: 1.0, color: Colors.grey)),
+      padding: const EdgeInsets.only(left: 8.0),
       child: new TextFormField(
-        autofocus: true,
+        autofocus: false,
         controller: controller,
         keyboardType: TextInputType.emailAddress,
         decoration: new InputDecoration(
+            border: InputBorder.none,
             labelText: labelText,
             labelStyle:
                 new TextStyle(fontSize: 16.0, fontFamily: 'Avenir-Medium')),
@@ -52,13 +57,17 @@ class TextFieldText extends StatelessWidget {
   Widget build(BuildContext context) {
     var textPosition;
     return new Container(
+      decoration: new BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(width: 1.0, color: Colors.grey)),
+      padding: const EdgeInsets.only(left: 8.0),
       child: new TextFormField(
-        autofocus: true,
+        autofocus: false,
         controller: controller,
         decoration: new InputDecoration(
+            border: InputBorder.none,
             labelText: labelText,
-            labelStyle:
-                new TextStyle(fontSize: 16.0, fontFamily: 'Avenir-Medium')),
+            labelStyle: new TextStyle(fontSize: 16.0)),
       ),
     );
   }
@@ -72,16 +81,18 @@ class TextFieldNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
+      decoration: new BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(width: 1.0, color: Colors.grey)),
+      padding: const EdgeInsets.only(left: 8.0),
       child: new TextFormField(
-        autofocus: true,
+        autofocus: false,
         controller: controller,
-        
         keyboardType: TextInputType.number,
         decoration: new InputDecoration(
             border: InputBorder.none,
-            contentPadding: const EdgeInsets.only(top:4.0,left: 8.0),
             labelText: labelText,
-            ),
+            labelStyle: new TextStyle(fontSize: 14.0)),
       ),
     );
   }

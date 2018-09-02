@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kulina/components/text.dart';
+import 'package:kulina/components/atoms/text.dart';
 
 class CustomCard extends StatelessWidget {
   final VoidCallback onPressed;

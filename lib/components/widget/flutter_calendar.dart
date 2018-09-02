@@ -1,7 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:kulina/calendar_tile.dart';
+import 'package:kulina/components/widget/calendar_tile.dart';
 import 'package:tuple/tuple.dart';
 import 'package:date_utils/date_utils.dart';
 
@@ -34,6 +32,10 @@ class Calendar extends StatefulWidget {
 class _CalendarState extends State<Calendar> {
   final calendarUtils = new Utils();
   DateTime today = new DateTime.now();
+  int day;
+  int month;
+  int year;
+  
   List<DateTime> selectedMonthsDays;
   DateTime _selectedDate;
   Tuple2<DateTime, DateTime> selectedRange;
@@ -49,6 +51,7 @@ class _CalendarState extends State<Calendar> {
       today = widget.initialCalendarDateOverride;
     selectedMonthsDays = Utils.daysInMonth(today);
     _selectedDate = today;
+    
     displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
   }
 
@@ -142,13 +145,14 @@ class _CalendarState extends State<Calendar> {
               child: this.widget.dayBuilder(context, day),
             ),
           );
-        } 
-        //Selected Date 
+        }
+        //Selected Date
         else {
           dayWidgets.add(
             new CalendarTile(
               onDateSelected: () => handleSelectedDateAndUserCallback(day),
               date: day,
+
               dateStyles: configureDateStyle(monthStarted, monthEnded),
               isSelected: Utils.isSameDay(selectedDate, day),
             ),

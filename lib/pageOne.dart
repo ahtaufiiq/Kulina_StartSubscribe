@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:kulina/components/box.dart';
-import 'package:kulina/components/button.dart';
-import 'package:kulina/components/button_gradient.dart';
-import 'package:kulina/components/button_normal.dart';
-import 'package:kulina/components/text.dart';
-import 'package:kulina/components/text_field.dart';
-import 'package:kulina/flutter_calendar.dart';
+import 'package:kulina/components/atoms/box.dart';
+import 'package:kulina/components/atoms/button.dart';
+import 'package:kulina/components/atoms/button_gradient.dart';
+import 'package:kulina/components/atoms/button_normal.dart';
+import 'package:kulina/components/atoms/text.dart';
+import 'package:kulina/components/atoms/text_field.dart';
+import 'package:kulina/components/widget/flutter_calendar.dart';
 
 class PageOne extends StatefulWidget {
   final VoidCallback voidCallback;
-
+  final VoidCallback decrement;
+  final VoidCallback increment;
+  final VoidCallback box1;
+  final VoidCallback box2;
+  final VoidCallback box3;
+  final VoidCallback box4;
   var position = 1;
   var jumlah = 1;
   var pilihSendiri = 2;
+  var hargaPilihSendiri = 25000;
+  int harga = 22500;
 
-  int harga = 25000;
-
-  var waktu = 10;
+  var waktu = 20;
 
   bool inisiasiDate = true;
-  PageOne({this.voidCallback});
+  PageOne({this.voidCallback, this.jumlah = 1, this.decrement,this.pilihSendiri,this.hargaPilihSendiri, this.increment,this.box1,this.position=1,this.harga=22500,this.waktu=20,this.box2,this.box3,this.box4});
   @override
   PageOneState createState() {
     return new PageOneState();
@@ -153,19 +158,9 @@ class PageOneState extends State<PageOne> {
             Padding(
                 padding: const EdgeInsets.only(right: 4.0),
                 child: CustomButton.minus(
-                  onPressed: () {
-                    setState(() {
-                      if (widget.jumlah > 1) {
-                        widget.jumlah--;
-                      }
-                    });
-                  },
+                  onPressed: widget.decrement,
                 )),
-            CustomButton.add(onPressed: () {
-              setState(() {
-                widget.jumlah++;
-              });
-            })
+            CustomButton.add(onPressed: widget.increment)
           ],
         ),
       ],
@@ -181,13 +176,7 @@ class PageOneState extends State<PageOne> {
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: CustomBox.large(
-                onPressed: () {
-                  setState(() {
-                    widget.position = 1;
-                    widget.waktu = 20;
-                    widget.harga = 22500;
-                  });
-                },
+                onPressed: widget.box1,
                 position: widget.position,
                 positionBox: 1,
                 harga: "Rp 22.500/hari",
@@ -195,13 +184,7 @@ class PageOneState extends State<PageOne> {
               ),
             ),
             CustomBox.large(
-              onPressed: () {
-                setState(() {
-                  widget.position = 2;
-                  widget.waktu = 10;
-                  widget.harga = 24250;
-                });
-              },
+              onPressed: widget.box2,
               harga: "Rp 24.250/hari",
               jumlah: "10 Hari",
               position: widget.position,
@@ -218,13 +201,7 @@ class PageOneState extends State<PageOne> {
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: CustomBox.large(
-                onPressed: () {
-                  setState(() {
-                    widget.position = 3;
-                    widget.waktu = 5;
-                    widget.harga = 25000;
-                  });
-                },
+                onPressed: widget.box3,
                 jumlah: "5 Hari",
                 harga: "Rp 25.000/hari",
                 position: widget.position,
@@ -232,146 +209,20 @@ class PageOneState extends State<PageOne> {
               ),
             ),
             CustomBox.large(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (_) => new SimpleDialog(
-                          titlePadding: const EdgeInsets.all(0.0),
-                          children: <Widget>[
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.only(
-                                  top: 2.0, left: 8.0, right: 10.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(""),
-                                      Icon(Icons.close)
-                                    ],
-                                  ),
-                                  Text("Pilih Periode Langganan"),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 14.0),
-                                  ),
-                                  new Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 6.0),
-                                        child: new Container(
-                                            height: 40.0,
-                                            width: MediaQuery
-                                                    .of(context)
-                                                    .size
-                                                    .width -
-                                                250,
-                                            decoration: new BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5.0),
-                                              border: Border.all(
-                                                  width: 2.0,
-                                                  color: Colors.grey),
-                                              color: Colors.white,
-                                              shape: BoxShape.rectangle,
-                                            ),
-                                            child: Center(
-                                                child: TextFieldNumber(
-                                              controller: number,
-                                            ))),
-                                      ),
-                                      Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 4.0),
-                                          child: CustomButton.minus(
-                                            warna: Colors.grey,
-                                            onPressed: () {
-                                              setState(() {
-                                                if (widget.pilihSendiri > 2) {
-                                                  widget.pilihSendiri--;
-                                                  number.text = widget
-                                                      .pilihSendiri
-                                                      .toString();
-                                                }
-                                              });
-                                            },
-                                          )),
-                                      CustomButton.add(
-                                          warna: Colors.grey,
-                                          onPressed: () {
-                                            setState(() {
-                                              widget.pilihSendiri++;
-                                              number.text = widget.pilihSendiri
-                                                  .toString();
-                                            });
-                                          })
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 14.0),
-                                  ),
-                                  ButtonNormal.small(
-                                    text: "Ok",
-                                    warna: Colors.red,
-                                    onPressed: () {
-                                      widget.pilihSendiri =
-                                          int.parse(number.text.toString());
-
-                                      int lama = widget.pilihSendiri;
-                                      int position = 0;
-                                      int harga = 0;
-                                      switch (lama) {
-                                        case 5:
-                                          position = 3;
-                                          harga = 25000;
-                                          break;
-                                        case 10:
-                                          position = 2;
-                                          harga = 24250;
-                                          break;
-                                        case 20:
-                                          position = 1;
-                                          harga = 22500;
-                                          break;
-                                        default:
-                                          position = 4;
-                                          harga = lama < 10
-                                              ? 25000
-                                              : lama < 20 ? 24250 : 22500;
-                                      }
-                                      setState(() {
-                                        widget.position = position;
-                                        widget.harga = harga;
-                                      });
-
-                                      Navigator.pop(context);
-                                    },
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ));
-              },
+              onPressed: widget.box4,
               position: widget.position,
               positionBox: 4,
-              jumlah: widget.pilihSendiri != 1 &&
+              jumlah: widget.pilihSendiri != 2 &&
                       widget.pilihSendiri != 5 &&
                       widget.pilihSendiri != 10 &&
                       widget.pilihSendiri != 20
                   ? "${widget.pilihSendiri} Hari"
                   : "Pilih Sendiri",
-              harga: widget.pilihSendiri != 1 &&
+              harga: widget.pilihSendiri != 2 &&
                       widget.pilihSendiri != 5 &&
                       widget.pilihSendiri != 10 &&
                       widget.pilihSendiri != 20
-                  ? "Rp ${widget.harga}/hari"
+                  ? "Rp ${widget.hargaPilihSendiri}/hari"
                   : "Min. 2 Hari",
             )
           ],

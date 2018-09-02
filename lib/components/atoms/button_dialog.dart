@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kulina/components/button.dart';
-import 'package:kulina/components/button_gradient.dart';
+import 'package:kulina/components/atoms/button.dart';
+import 'package:kulina/components/atoms/button_gradient.dart';
 
 class ButtonDialog extends StatelessWidget {
   final VoidCallback onPressedRed;
