@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kulina/components/atoms/button_gradient.dart';
 import 'package:kulina/components/atoms/text.dart';
 import 'package:kulina/components/atoms/text_field.dart';
-import 'package:kulina/components/custom_card.dart';
+import 'package:kulina/components/molecules/custom_card.dart';
+import 'package:kulina/components/molecules/two_button.dart';
+import 'package:kulina/components/organisms/card_rincian_pembayaran.dart';
 
 class PageTwo extends StatefulWidget {
   final VoidCallback voidCallback;
@@ -15,13 +17,19 @@ class PageTwo extends StatefulWidget {
   bool isEditProfile = true;
   bool isEditAlamat = true;
 
+  String nama = "Ahmad Taufiq",
+      alamat =
+          "Jalan Tulodong Atas, RT.6, Senayan, South Jakarta City, Jakarta, Indonesia",
+      email = "ataufiq665@gmail.com",
+      nomer = "6289634067877";
+
   PageTwo(
       {this.voidCallback,
       this.jumlah = 1,
       this.harga = 25000,
       this.waktu = 10,
-      this.isEditAlamat=true,
-      this.isEditProfile=true,
+      this.isEditAlamat = true,
+      this.isEditProfile = true,
       this.editAlamat,
       this.editProfile});
   @override
@@ -31,100 +39,33 @@ class PageTwo extends StatefulWidget {
 }
 
 class PageTwoState extends State<PageTwo> {
+  TextEditingController nama = TextEditingController(text: "Ahmad Taufiq");
+  TextEditingController email =
+      TextEditingController(text: "ataufiq665@gmail.com");
+  TextEditingController nomer = TextEditingController(text: "6289634067877");
+  TextEditingController alamat = TextEditingController(
+      text:
+          "Jalan Tulodong Atas, RT.6, Senayan, South Jakarta City, Jakarta, Indonesia");
+  TextEditingController catatan = TextEditingController(text: "6289634067877");
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
-          CustomCard("Profil Kamu", onPressed:widget.editProfile, 
-          isEditable: !widget.isEditProfile, 
-          widget: _buildContentProfile()),
-          CustomCard("Alamat Pengiriman", 
-              onPressed:widget.editAlamat, 
-          isEditable: !widget.isEditAlamat,
-          widget: _buildContentAlamat()),
-          Card(
-            margin: const EdgeInsets.all(16.0),
-            child: _buildRincian(),
+          CustomCard("Profil Kamu",
+              onPressed: widget.editProfile,
+              isEditable: !widget.isEditProfile,
+              widget: _buildContentProfile()),
+          CustomCard("Alamat Pengiriman",
+              onPressed: widget.editAlamat,
+              isEditable: !widget.isEditAlamat,
+              widget: _buildContentAlamat()),
+          CardRincianPembayaran(
+            harga: widget.harga,
+            waktu: widget.waktu,
+            jumlah: widget.jumlah,
           ),
           _buildButton()
-        ],
-      ),
-    );
-  }
-
-  _buildRincian() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, bottom: 4.0, top: 8.0),
-            child: CustomText.title(
-              text: "Rincian Langganan",
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 2.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildText("Harga per box"),
-                _buildText("Rp ${widget.harga}")
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.grey,
-            width: double.infinity,
-            height: 0.2,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildText("Jumlah Box"),
-                _buildText("${widget.jumlah} Box"),
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.grey,
-            width: double.infinity,
-            height: 0.3,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildText("Lama Langganan"),
-                _buildText("${widget.waktu} Hari")
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.grey,
-            width: double.infinity,
-            height: 0.3,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 8.0, left: 8.0, right: 8.0, bottom: 14.0),
-                child: CustomText.title(text: "Total "),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child:
-                    CustomText.title(text: "Rp ${widget.harga*widget.jumlah}"),
-              )
-            ],
-          )
         ],
       ),
     );
@@ -139,21 +80,7 @@ class PageTwoState extends State<PageTwo> {
     );
   }
 
-  _buildButton() {
-    print("Alamat ${widget.isEditAlamat}");
-    print("Profile ${widget.isEditProfile}");
-    return widget.isEditAlamat == false && widget.isEditProfile == false
-        ? Container(
-            margin: const EdgeInsets.all(14.0),
-            child: ButtonGradient.large(
-              text: "Selanjutnya",
-              onPressed: widget.voidCallback,
-            ),
-          )
-        : Container();
-  }
-
-// Card Profile
+  // Card Profile
   _buildContentProfile() {
     return widget.isEditProfile ? _editProfile() : _contentProfile();
   }
@@ -167,31 +94,26 @@ class PageTwoState extends State<PageTwo> {
           padding: const EdgeInsets.only(bottom: 6.0),
           child: CustomText.title_medium(text: "Nama"),
         ),
-        TextFieldText(),
+        TextFieldText(
+          controller: nama,
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 6.0),
           child: CustomText.title_medium(text: "Email"),
         ),
-        TextFieldEmail(),
+        TextFieldEmail(
+          controller: email,
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 6.0),
           child: CustomText.title_medium(text: "No. Handphone"),
         ),
-        TextFieldNumber(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Text("Batal"),
-              ),
-            ),
-            ButtonGradient.small(
-              text: "Simpan",
-              onPressed: widget.editProfile,
-            )
-          ],
+        TextFieldNumber(
+          controller: nomer,
+        ),
+        TwoButton(
+          onPressedOk: widget.editProfile,
+          onPressedCancel: widget.editProfile,
         )
       ],
     );
@@ -203,16 +125,16 @@ class PageTwoState extends State<PageTwo> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         CustomText.title(
-          text: "Ahmad Taufiq",
+          text: widget.nama,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
           child: Text(
-            "ataufiq665@gmail.com",
+            widget.email,
             style: TextStyle(color: Colors.grey),
           ),
         ),
-        Text("628978787", style: TextStyle(color: Colors.grey)),
+        Text(widget.nomer, style: TextStyle(color: Colors.grey)),
       ],
     );
   }
@@ -231,26 +153,17 @@ class PageTwoState extends State<PageTwo> {
           padding: const EdgeInsets.only(bottom: 6.0),
           child: CustomText.medium(text: "Cari nama tempat dari Google Map"),
         ),
-        TextFieldText(),
+        TextFieldText(
+          controller: alamat,
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 6.0),
           child: CustomText.title(text: "Catatan Kurir (opsional)"),
         ),
         TextFieldEmail(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Text("Batal"),
-              ),
-            ),
-            ButtonGradient.small(
-              text: "Simpan",
-              onPressed: widget.editAlamat,
-            )
-          ],
+        TwoButton(
+          onPressedOk: widget.editAlamat,
+          onPressedCancel: widget.editAlamat,
         )
       ],
     );
@@ -265,15 +178,31 @@ class PageTwoState extends State<PageTwo> {
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[Text("Kulina"), GestureDetector(onTap: widget.editAlamat,child: Text("edit"))],
+            children: <Widget>[
+              Text("Kulina"),
+              GestureDetector(onTap: widget.editAlamat, child: Text("edit"))
+            ],
           ),
           Padding(
             padding: const EdgeInsets.only(top: 4.0, right: 4.0),
-            child: Text(
-                "Jalan Tulodong Atas, RT.6, Senayan, South Jakarta City, Jakarta, Indonesia"),
+            child: Text(widget.alamat),
           )
         ],
       ),
     );
+  }
+
+  _buildButton() {
+    print("Alamat ${widget.isEditAlamat}");
+    print("Profile ${widget.isEditProfile}");
+    return widget.isEditAlamat == false && widget.isEditProfile == false
+        ? Container(
+            margin: const EdgeInsets.all(14.0),
+            child: ButtonGradient.large(
+              text: "Selanjutnya",
+              onPressed: widget.voidCallback,
+            ),
+          )
+        : Container();
   }
 }

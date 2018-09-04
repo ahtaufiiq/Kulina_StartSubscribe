@@ -35,7 +35,7 @@ class _CalendarState extends State<Calendar> {
   int day;
   int month;
   int year;
-  
+
   List<DateTime> selectedMonthsDays;
   DateTime _selectedDate;
   Tuple2<DateTime, DateTime> selectedRange;
@@ -51,7 +51,7 @@ class _CalendarState extends State<Calendar> {
       today = widget.initialCalendarDateOverride;
     selectedMonthsDays = Utils.daysInMonth(today);
     _selectedDate = today;
-    
+
     displayMonth = Utils.formatMonth(Utils.firstDayOfWeek(today));
   }
 
@@ -152,7 +152,6 @@ class _CalendarState extends State<Calendar> {
             new CalendarTile(
               onDateSelected: () => handleSelectedDateAndUserCallback(day),
               date: day,
-
               dateStyles: configureDateStyle(monthStarted, monthEnded),
               isSelected: Utils.isSameDay(selectedDate, day),
             ),

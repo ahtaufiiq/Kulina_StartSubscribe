@@ -12,7 +12,12 @@ class CustomBox extends StatelessWidget {
   var position;
   var positionBox;
 
-  CustomBox.large({this.onPressed, this.position, this.positionBox,this.harga,this.jumlah})
+  CustomBox.large(
+      {this.onPressed,
+      this.position,
+      this.positionBox,
+      this.harga,
+      this.jumlah})
       : icon = Icons.delete;
   CustomBox.add({this.onPressed}) : icon = Icons.add;
 
@@ -44,10 +49,13 @@ class CustomBox extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(jumlah,style: TextStyle(fontWeight: FontWeight.bold),),
+                      Text(
+                        jumlah,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       Padding(
-                        padding: const EdgeInsets.only(top:3.0),
-                        child: Text(harga,style: TextStyle(fontSize: 11.0)),
+                        padding: const EdgeInsets.only(top: 3.0),
+                        child: Text(harga, style: TextStyle(fontSize: 11.0)),
                       ),
                     ],
                   )
@@ -56,14 +64,15 @@ class CustomBox extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                       jumlah,
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                        jumlah,
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top:3.0),
+                        padding: const EdgeInsets.only(top: 3.0),
                         child: Text(
                           harga,
-                          style: TextStyle(color: Colors.white,fontSize: 11.0),
+                          style: TextStyle(color: Colors.white, fontSize: 11.0),
                         ),
                       )
                     ],

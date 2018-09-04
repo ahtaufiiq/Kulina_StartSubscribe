@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kulina/components/atoms/button.dart';
-import 'package:kulina/components/atoms/button_normal.dart';
 import 'package:kulina/components/atoms/text_field.dart';
+import 'package:kulina/components/widget/stepper_custom.dart';
 import 'package:kulina/pageOne.dart';
 import 'package:kulina/pageThree.dart';
 import 'package:kulina/pageTwo.dart';
-import 'package:kulina/stepper_custom.dart';
 
 void main() => runApp(new MyApp());
 
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  int position = 3;
+  int position = 2;
   int positionBox = 1;
 
   var jumlah = 1;
@@ -60,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: new Text(
           widget.position == 1
               ? "Mulai Langganan"
-              : widget.position == 2 ? "Pengantaran" : "Pembayaran",
+              : widget.position == 2 ? "Pengiriman" : "Pembayaran",
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -194,7 +193,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[Text(""), Icon(Icons.close)],
+                        children: <Widget>[Text(""), GestureDetector(child: Icon(Icons.close),onTap: (){
+                          Navigator.pop(context);
+                        },)],
                       ),
                       Text("Pilih Periode Langganan"),
                       Padding(
@@ -240,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 14.0),
                       ),
-                      ButtonNormal.small(
+                      CustomButton.normal(
                         text: "Ok",
                         warna: Colors.red,
                         onPressed: () {

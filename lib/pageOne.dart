@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kulina/components/atoms/box.dart';
 import 'package:kulina/components/atoms/button.dart';
 import 'package:kulina/components/atoms/button_gradient.dart';
-import 'package:kulina/components/atoms/button_normal.dart';
 import 'package:kulina/components/atoms/text.dart';
 import 'package:kulina/components/atoms/text_field.dart';
+import 'package:kulina/components/organisms/card_rincian_pembayaran.dart';
 import 'package:kulina/components/widget/flutter_calendar.dart';
 
 class PageOne extends StatefulWidget {
@@ -23,8 +23,21 @@ class PageOne extends StatefulWidget {
 
   var waktu = 20;
 
-  bool inisiasiDate = true;
-  PageOne({this.voidCallback, this.jumlah = 1, this.decrement,this.pilihSendiri,this.hargaPilihSendiri, this.increment,this.box1,this.position=1,this.harga=22500,this.waktu=20,this.box2,this.box3,this.box4});
+  bool inisiasi = true;
+  PageOne(
+      {this.voidCallback,
+      this.jumlah = 1,
+      this.decrement,
+      this.pilihSendiri,
+      this.hargaPilihSendiri,
+      this.increment,
+      this.box1,
+      this.position = 1,
+      this.harga = 22500,
+      this.waktu = 20,
+      this.box2,
+      this.box3,
+      this.box4});
   @override
   PageOneState createState() {
     return new PageOneState();
@@ -64,64 +77,16 @@ class PageOneState extends State<PageOne> {
                   ),
                 ),
                 _buildLamaLangganan(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      Calendar(
-                        isExpandable: true,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                      ),
-                      widget.pilihSendiri > 40 && widget.position == 4
-                          ? Text(
-                              "Maksimal waktu berlangganan 40 hari",
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          : Container(),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12.0),
-                      ),
-                      Container(
-                        color: const Color(0xFFf2e596),
-                        margin: const EdgeInsets.only(bottom: 12.0),
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Pro Tips",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                  "Atur jadwal langganan dengan menekan tanggal pada kalender.Selesaikan transaksi sebelum pukul 19:00 untuk mulai pengiriman besok"),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                _buildCalendar()
               ],
             ),
           ),
-          Card(
-            elevation: 8.0,
-            margin: const EdgeInsets.only(top: 16.0),
-            child: _buildRincian(),
+          CardRincianPembayaran(
+            harga: widget.harga,
+            waktu: widget.waktu,
+            jumlah: widget.jumlah,
           ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 12.0, top: 16.0),
-            child: ButtonGradient.large(
-              text: "Selanjutnya",
-              onPressed: widget.voidCallback,
-            ),
-          ),
+          _buildButtonSelanjutnya()
         ],
       ),
     );
@@ -231,79 +196,61 @@ class PageOneState extends State<PageOne> {
     );
   }
 
-  _buildRincian() {
+  _buildCalendar() {
     return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          Calendar(
+            isExpandable: true,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4.0),
+          ),
+          widget.pilihSendiri > 40 && widget.position == 4
+              ? Text(
+                  "Maksimal waktu berlangganan 40 hari",
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                )
+              : Container(),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+          ),
+          _buildProTips()
+        ],
+      ),
+    );
+  }
+
+  _buildProTips() {
+    return Container(
+      color: const Color(0xFFf2e596),
+      margin: const EdgeInsets.only(bottom: 12.0),
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, bottom: 4.0, top: 8.0),
-            child: CustomText.title(
-              text: "Rincian Langganan",
-            ),
+          Text(
+            "Pro Tips",
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 2.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildText("Harga per box"),
-                _buildText("Rp ${widget.harga}")
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.grey,
-            width: double.infinity,
-            height: 0.2,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildText("Jumlah Box"),
-                _buildText("${widget.jumlah} Box"),
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.grey,
-            width: double.infinity,
-            height: 0.3,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildText("Lama Langganan"),
-                _buildText("${widget.waktu} Hari")
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.grey,
-            width: double.infinity,
-            height: 0.3,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 8.0, left: 8.0, right: 8.0, bottom: 14.0),
-                child: CustomText.title(text: "Total "),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child:
-                    CustomText.title(text: "Rp ${widget.harga*widget.jumlah}"),
-              )
-            ],
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+                "Atur jadwal langganan dengan menekan tanggal pada kalender.Selesaikan transaksi sebelum pukul 19:00 untuk mulai pengiriman besok"),
           )
         ],
+      ),
+    );
+  }
+
+  _buildButtonSelanjutnya() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12.0, top: 16.0),
+      child: ButtonGradient.large(
+        text: "Selanjutnya",
+        onPressed: widget.voidCallback,
       ),
     );
   }

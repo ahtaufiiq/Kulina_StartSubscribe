@@ -36,7 +36,7 @@ class CustomCard extends StatelessWidget {
               ],
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 6.0,bottom: 12.0),
+              padding: const EdgeInsets.only(top: 6.0, bottom: 4.0),
             ),
             widget == null ? Container() : widget
           ],

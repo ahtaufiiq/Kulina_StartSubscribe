@@ -8,17 +8,22 @@ class ButtonGradient extends StatelessWidget {
   final BuildContext context;
   double fontSize;
 
-  ButtonGradient.large({this.onPressed, this.text="",this.fontSize=16.0})
+  ButtonGradient.large({this.onPressed, this.text = "", this.fontSize = 16.0})
       : width = double.infinity,
         height = 50.0;
 
   ButtonGradient.small({this.onPressed, this.text})
       : height = 38.0,
-      fontSize=14.0,
+        fontSize = 14.0,
         width = 120.0;
 
   ButtonGradient(
-      {this.height, this.width, this.text, this.onPressed, this.context,this.fontSize=16.0});
+      {this.height,
+      this.width,
+      this.text,
+      this.onPressed,
+      this.context,
+      this.fontSize = 16.0});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,7 @@ class ButtonGradient extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: new Text(
               text,
-              style: new TextStyle(color: Colors.white,fontSize: fontSize),
+              style: new TextStyle(color: Colors.white, fontSize: fontSize),
             ),
           ),
         ),
