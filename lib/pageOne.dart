@@ -112,7 +112,7 @@ class PageOneState extends State<PageOne> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 6.0),
+              padding: const EdgeInsets.only(left: 14.0, right: 6.0),
               child: new Container(
                 height: 45.0,
                 width: MediaQuery.of(context).size.width/2,
