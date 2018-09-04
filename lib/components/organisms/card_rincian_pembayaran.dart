@@ -7,13 +7,15 @@ class CardRincianPembayaran extends StatelessWidget {
   final bool isEditable;
   final Widget widget;
   int harga,waktu,jumlah;
+  double elevation;
 
 
-  CardRincianPembayaran({this.harga,this.waktu,this.widget,this.jumlah, this.onPressed, this.isEditable = false});
+  CardRincianPembayaran({this.harga,this.waktu,this.widget,this.jumlah, this.onPressed, this.isEditable = false, this.elevation=3.0});
 
   @override
   Widget build(BuildContext context) {
     return CustomCard("Rincian Langganan",
+    elevation: elevation,
               widget: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class ButtonNormal extends StatelessWidget {
   final double width;
   final double height;
   bool isIcon;
@@ -9,23 +9,11 @@ class CustomButton extends StatelessWidget {
   Color warna;
   var icon = Icons.minimize;
 
-  CustomButton.minus(
-      {this.onPressed, this.warna = Colors.orange, this.isIcon: true})
-      : icon = Icons.remove,
-        width = 52.0,
-        height = 40.0;
-  CustomButton.add(
-      {this.onPressed, this.warna = Colors.orange, this.isIcon: true})
-      : icon = Icons.add,
-        width = 52.0,
-        height = 40.0;
-  CustomButton.normal(
+  ButtonNormal(
       {this.onPressed, this.warna = Colors.red, this.isIcon: false, this.text})
       : icon = Icons.add,
         height = 38.0,
         width = double.infinity;
-
-  CustomButton({this.height, this.width, this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

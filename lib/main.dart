@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kulina/components/atoms/button.dart';
+import 'package:kulina/components/atoms/button_normal.dart';
+import 'package:kulina/components/atoms/button_icon.dart';
 import 'package:kulina/components/atoms/text_field.dart';
 import 'package:kulina/components/widget/stepper_custom.dart';
 import 'package:kulina/pageOne.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  int position = 2;
+  int position = 1;
   int positionBox = 1;
 
   var jumlah = 1;
@@ -235,13 +236,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   widget.pilihSendiri++;
                                   number.text = widget.pilihSendiri.toString();
                                 });
-                              })
+                              }),
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 14.0),
                       ),
-                      CustomButton.normal(
+                      ButtonNormal(
                         text: "Ok",
                         warna: Colors.red,
                         onPressed: () {

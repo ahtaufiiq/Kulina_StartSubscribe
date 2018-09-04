@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kulina/components/atoms/box.dart';
-import 'package:kulina/components/atoms/button.dart';
+import 'package:kulina/components/atoms/button_icon.dart';
 import 'package:kulina/components/atoms/button_gradient.dart';
 import 'package:kulina/components/atoms/text.dart';
 import 'package:kulina/components/atoms/text_field.dart';
@@ -49,11 +49,11 @@ class PageOneState extends State<PageOne> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+      padding: const EdgeInsets.only(left: 14.0, right: 14.0, bottom: 24.0),
       child: Column(
         children: <Widget>[
           Card(
-            elevation: 8.0,
+            elevation: 5.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,10 +81,14 @@ class PageOneState extends State<PageOne> {
               ],
             ),
           ),
-          CardRincianPembayaran(
-            harga: widget.harga,
-            waktu: widget.waktu,
-            jumlah: widget.jumlah,
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: CardRincianPembayaran(
+              harga: widget.harga,
+              waktu: widget.waktu,
+              jumlah: widget.jumlah,
+              elevation:5.0
+            ),
           ),
           _buildButtonSelanjutnya()
         ],
@@ -105,12 +109,13 @@ class PageOneState extends State<PageOne> {
     return Row(
       children: [
         new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 6.0),
               child: new Container(
-                height: 40.0,
-                width: MediaQuery.of(context).size.width - 192,
+                height: 45.0,
+                width: MediaQuery.of(context).size.width/2,
                 decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
                   border: Border.all(width: 2.0, color: Colors.orange),
@@ -136,10 +141,10 @@ class PageOneState extends State<PageOne> {
     return new Column(
       children: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 14.0,left: 14.0),
               child: CustomBox.large(
                 onPressed: widget.box1,
                 position: widget.position,
@@ -148,12 +153,15 @@ class PageOneState extends State<PageOne> {
                 jumlah: "20 Hari",
               ),
             ),
-            CustomBox.large(
-              onPressed: widget.box2,
-              harga: "Rp 24.250/hari",
-              jumlah: "10 Hari",
-              position: widget.position,
-              positionBox: 2,
+            Padding(
+              padding: const EdgeInsets.only(right:14.0),
+              child: CustomBox.large(
+                onPressed: widget.box2,
+                harga: "Rp 24.250/hari",
+                jumlah: "10 Hari",
+                position: widget.position,
+                positionBox: 2,
+              ),
             )
           ],
         ),
@@ -161,10 +169,10 @@ class PageOneState extends State<PageOne> {
           padding: const EdgeInsets.only(top: 8.0),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 8.0,left: 14.0),
               child: CustomBox.large(
                 onPressed: widget.box3,
                 jumlah: "5 Hari",
@@ -173,22 +181,25 @@ class PageOneState extends State<PageOne> {
                 positionBox: 3,
               ),
             ),
-            CustomBox.large(
-              onPressed: widget.box4,
-              position: widget.position,
-              positionBox: 4,
-              jumlah: widget.pilihSendiri != 2 &&
-                      widget.pilihSendiri != 5 &&
-                      widget.pilihSendiri != 10 &&
-                      widget.pilihSendiri != 20
-                  ? "${widget.pilihSendiri} Hari"
-                  : "Pilih Sendiri",
-              harga: widget.pilihSendiri != 2 &&
-                      widget.pilihSendiri != 5 &&
-                      widget.pilihSendiri != 10 &&
-                      widget.pilihSendiri != 20
-                  ? "Rp ${widget.hargaPilihSendiri}/hari"
-                  : "Min. 2 Hari",
+            Padding(
+              padding: const EdgeInsets.only(right: 14.0),
+              child: CustomBox.large(
+                onPressed: widget.box4,
+                position: widget.position,
+                positionBox: 4,
+                jumlah: widget.pilihSendiri != 2 &&
+                        widget.pilihSendiri != 5 &&
+                        widget.pilihSendiri != 10 &&
+                        widget.pilihSendiri != 20
+                    ? "${widget.pilihSendiri} Hari"
+                    : "Pilih Sendiri",
+                harga: widget.pilihSendiri != 2 &&
+                        widget.pilihSendiri != 5 &&
+                        widget.pilihSendiri != 10 &&
+                        widget.pilihSendiri != 20
+                    ? "Rp ${widget.hargaPilihSendiri}/hari"
+                    : "Min. 2 Hari",
+              ),
             )
           ],
         ),

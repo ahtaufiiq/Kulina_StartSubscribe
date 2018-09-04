@@ -28,8 +28,8 @@ class CustomBox extends StatelessWidget {
     return new GestureDetector(
       onTap: onPressed,
       child: new Container(
-        height: 48.0,
-        width: (MediaQuery.of(context).size.width / 2) - 48,
+        height: 52.0,
+        width: (MediaQuery.of(context).size.width / 2) - 40,
         decoration: position != positionBox
             ? new BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),

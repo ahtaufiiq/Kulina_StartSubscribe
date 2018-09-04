@@ -27,16 +27,22 @@ class PageThreeState extends State<PageThree> {
     return Container(
       child: Column(
         children: <Widget>[
-          CustomCard(
-            "Pilih Metode Pembayaran",
-            widget: Column(
-              children: <Widget>[_buildCreditCard(), _buildTransferBank()],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CustomCard(
+              "Pilih Metode Pembayaran",
+              widget: Column(
+                children: <Widget>[_buildCreditCard(), _buildTransferBank()],
+              ),
             ),
           ),
-          CardRincianPembayaran(
-            harga: widget.harga,
-            waktu: widget.waktu,
-            jumlah: widget.jumlah,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CardRincianPembayaran(
+              harga: widget.harga,
+              waktu: widget.waktu,
+              jumlah: widget.jumlah,
+            ),
           ),
           _buildButtonBayar()
         ],
@@ -189,7 +195,7 @@ class PageThreeState extends State<PageThree> {
 
   _buildButtonBayar() {
     return Container(
-        margin: const EdgeInsets.only(left: 14.0, right: 14.0, bottom: 14.0),
+        margin: const EdgeInsets.only(left: 12.0, right: 14.0, bottom: 12.0),
         child: ButtonGradient.large(
           text: "BAYAR",
         ));

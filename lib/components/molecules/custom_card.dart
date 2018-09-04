@@ -6,13 +6,14 @@ class CustomCard extends StatelessWidget {
   final bool isEditable;
   final Widget widget;
   String text;
+  double elevation;
 
-  CustomCard(this.text, {this.widget, this.onPressed, this.isEditable = false});
+  CustomCard(this.text, {this.elevation=3.0,this.widget, this.onPressed, this.isEditable = false});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(14.0),
+      elevation: elevation,
       child: Container(
         padding: const EdgeInsets.all(12.0),
         child: Column(

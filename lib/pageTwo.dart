@@ -52,18 +52,27 @@ class PageTwoState extends State<PageTwo> {
     return Container(
       child: Column(
         children: <Widget>[
-          CustomCard("Profil Kamu",
-              onPressed: widget.editProfile,
-              isEditable: !widget.isEditProfile,
-              widget: _buildContentProfile()),
-          CustomCard("Alamat Pengiriman",
-              onPressed: widget.editAlamat,
-              isEditable: !widget.isEditAlamat,
-              widget: _buildContentAlamat()),
-          CardRincianPembayaran(
-            harga: widget.harga,
-            waktu: widget.waktu,
-            jumlah: widget.jumlah,
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: CustomCard("Profil Kamu",
+                onPressed: widget.editProfile,
+                isEditable: !widget.isEditProfile,
+                widget: _buildContentProfile()),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: CustomCard("Alamat Pengiriman",
+                onPressed: widget.editAlamat,
+                isEditable: !widget.isEditAlamat,
+                widget: _buildContentAlamat()),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: CardRincianPembayaran(
+              harga: widget.harga,
+              waktu: widget.waktu,
+              jumlah: widget.jumlah,
+            ),
           ),
           _buildButton()
         ],
